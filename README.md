@@ -11,14 +11,21 @@ Cashier Application by Huang
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## About Parsephoneresto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Persephoneresto is a web-based restaurant cashier application built with Laravel. It is designed to simplify product management, transactions, and revenue reporting efficiently.
 
--   [Simple, fast routing engine](https://laravel.com/docs/routing).
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--   [Robust background job processing](https://laravel.com/docs/queues).
--   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+✨ Key Features
+
+-   ✅ Product and topping management
+-   ✅ Fast and accurate cashier transaction processing
+-   ✅ Revenue report filtering by month
+-   ✅ Monthly revenue visualization using interactive charts (Chart.js)
+-   ✅ Responsive and user-friendly design
+
+🛠 Technologies Used
+-Laravel 7
+-MySQL
+-Bootstrap
+-Chart.js
+-jQuery
