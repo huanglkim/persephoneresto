@@ -1,0 +1,149 @@
+/* Body style */
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #ffbe0a22; /* Menggunakan warna latar belakang yang lebih soft */
+    margin: 0;
+    padding: 0;
+}
+
+/* Banner style */
+.banner img {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover; /* Menjaga proporsi gambar dengan memotong sesuai ukuran */
+}
+
+/* Pilih menu image */
+.pilih-menu img {
+    max-height: 120px; /* Sedikit menambah tinggi gambar untuk proporsi yang lebih baik */
+    object-fit: cover;
+    border-radius: 10px; /* Menambahkan border-radius agar lebih halus */
+}
+
+/* Pilih menu card */
+.pilih-menu .card {
+    border-radius: 20px;
+    box-shadow: 0 2px 5px #ffa90a46; /* Menambahkan bayangan lembut */
+    transition: transform 0.3s ease; /* Efek hover */
+}
+
+.pilih-menu .card:hover {
+    transform: translateY(-5px); /* Efek hover untuk kartu menu */
+}
+
+/* Products card */
+.products .card {
+    border-radius: 20px;
+    box-shadow: 0 4px 10px #ffa90a46; /* Memberikan bayangan lembut pada produk */
+    transition: transform 0.3s ease; /* Efek hover pada card produk */
+}
+
+.products .card:hover {
+    transform: translateY(-5px); /* Efek hover untuk produk */
+}
+
+/* Breadcrumb style */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.breadcrumb .active {
+    font-weight: bold;
+    color: #d66000;
+}
+
+/* Button styling */
+.btn-dark {
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #d66000;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-dark:hover {
+    background-color: #23272b; /* Warna lebih gelap saat hover */
+}
+
+/* Gambar Produk (produk detail) */
+.gambar-produk {
+    background-color: burlywood;
+    border-width: 0;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+/* Custom Badge style */
+.badge-custom {
+    font-size: 12px; /* Mengecilkan ukuran teks */
+    padding: 2px 6px; /* Mengecilkan ukuran badge */
+    border-radius: 5px; /* Membuat sudut lebih halus */
+    font-weight: bold; /* Menambahkan ketebalan font pada badge */
+}
+
+/* Input field for quantity and topping */
+input[type="number"],
+input[type="text"] {
+    border-radius: 10px;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #d66000;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: #d66000;
+}
+
+/* Invalid input field */
+input[type="number"].is-invalid,
+input[type="text"].is-invalid {
+    border-color: #d66000;
+}
+
+/* Invalid feedback */
+.invalid-feedback {
+    font-size: 12px;
+    color: #d66000;
+    margin-top: 5px;
+}
+
+/* Styling for success alert (when product is added to cart) */
+.alert-success {
+    background-color: rgba(34, 255, 86, 0.205);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Pastikan body dan html memiliki tinggi penuh */
+html,
+body {
+    height: 100%; /* Mengatur tinggi body dan html ke 100% */
+    margin: 0;
+    padding: 0;
+}
+
+/* Menggunakan Flexbox untuk mengatur layout halaman */
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Menjamin bahwa container utama mengisi 100% tinggi layar */
+}
+
+/* Konten utama mengisi ruang yang tersisa */
+main {
+    flex: 1;
+}
+
+/* Atur footer tetap di bawah */
+footer {
+    margin-top: auto; /* Memastikan footer selalu berada di bawah */
+}
