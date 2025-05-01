@@ -85,7 +85,7 @@
                 <div class="card card-custom mb-4">
                     <div class="card-body">
                         <form method="GET" action="{{ route('actual') }}" class="row g-3 align-items-end">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label class="form-label">Bulan:</label>
                                 <select name="bulan" class="form-select">
                                     <option value="">Semua Bulan</option>
@@ -94,17 +94,17 @@
                                 </select>
                             </div>
                         
-                            <div class="col-md-3">
-    <label class="form-label">Tahun:</label>
-    <select name="tahun" class="form-select">
-        <option value="">Semua Tahun</option>
-        @for ($y = now()->year; $y >= now()->year - 5; $y--)
-            <option value="{{ $y }}" {{ request('tahun') == $y ? 'selected' : '' }}>{{ $y }}</option>
-        @endfor
-    </select>
+                            <div class="col-md-4">
+                                <label class="form-label">Tahun:</label>
+                                <select name="tahun" class="form-select">
+                                    <option value="">Semua Tahun</option>
+                                        @for ($y = now()->year; $y >= now()->year - 5; $y--)
+                                    <option value="{{ $y }}" {{ request('tahun') == $y ? 'selected' : '' }}>{{ $y }}</option>
+                                        @endfor
+                                </select>
     </div>
 
-    <div class="col-md-3 d-flex align-items-end">
+    <div class="col-md-4 d-flex align-items-end">
         <button type="submit" class="btn btn-modern w-100">
             <i class="fas fa-filter me-1"></i> Filter
         </button>

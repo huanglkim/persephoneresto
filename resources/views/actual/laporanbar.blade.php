@@ -18,6 +18,16 @@
         #filterForm .col-md-3.d-flex.align-items-end button {
             width: 100%;
         }
+
+        #filterForm .form-control {
+            max-width: 100%; /* Pastikan input responsif penuh */
+        }
+
+        @media (min-width: 768px) {
+            #filterForm .form-control {
+                max-width: 100%; /* Biarkan Bootstrap atur dengan grid */
+            }
+        }
     </style>
 @endsection
 
@@ -28,24 +38,24 @@
                 <h5 class="mb-0">Filter Data</h5>
             </div>
             <div class="card-body">
-                <form id="filterForm" method="POST" action="{{ route('laporan.bar') }}" class="d-flex flex-column">
+                <form id="filterForm" method="POST" action="{{ route('laporan.bar') }}">
                     @csrf
-                    <div class="row g-3">
-                        <div class="col-md-6">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-4">
                             <label for="bulan_awal" class="form-label">Bulan Awal:</label>
                             <input type="month" id="bulan_awal" name="bulan_awal" class="form-control" required>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="bulan_akhir" class="form-label">Bulan Akhir:</label>
                             <input type="month" id="bulan_akhir" name="bulan_akhir" class="form-control" required>
                         </div>
+                        <div class="col-md-4 d-grid">
+                            <button type="submit" class="btn btn-modern">
+                                <i class="fas fa-filter"></i> Filter
+                            </button>
+                        </div>
                     </div>
-                    <div class="mt-3">
-                        <button type="submit" class="btn btn-modern">
-                            <i class="fas fa-filter"></i> Filter
-                        </button>
-                    </div>
-                </form>
+                </form>                
             </div>
         </div>
         <div class="card mb-4">
