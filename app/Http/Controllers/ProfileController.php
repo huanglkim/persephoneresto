@@ -62,7 +62,6 @@ class ProfileController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
             'alamat' => ['nullable', 'string', 'max:255'],
             'nohp' => ['nullable', 'string', 'max:20'],
-            'jabatan_id' => ['required', 'string', 'max:255'],
             'gambar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ]);
 
@@ -74,7 +73,6 @@ class ProfileController extends Controller
         $user->email = $request->email;
         $user->alamat = $request->alamat;
         $user->nohp = $request->nohp;
-        $user->jabatan_id = $request->jabatan_id;
 
         if ($request->hasFile('gambar')) {
             // Delete old image if exists

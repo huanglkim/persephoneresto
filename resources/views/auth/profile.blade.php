@@ -19,7 +19,7 @@
                                         </div>
                                     @endif
                                     <h5 class="mt-3">{{ $user->name }}</h5>
-                                    <p class="text-muted">{{ $user->jabatan->nama_jabatan }}</p>
+                                    <p class="text-muted">{{ optional($user->jabatan)->nama_jabatan ?? '-' }}</p>
                                     
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                                         <dd class="col-md-8">{{ $user->alamat ?? '-' }}</dd>
 
                                         <dt class="col-md-4">{{ __('Jabatan') }}</dt>
-                                        <dd class="col-md-8">{{ $user->jabatan->nama_jabatan ?? '-' }}</dd>
+                                        <dd class="col-md-8">{{ optional($user->jabatan)->nama_jabatan ?? '-' }}</dd>
 
                                         {{-- Tambahkan informasi lain sesuai kebutuhan --}}
                                     </dl>

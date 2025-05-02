@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('alamat')->nullable();
             $table->string('nohp')->nullable();
-            $table->string('jabatan_id');
+            $table->integer('jabatan_id');
             $table->string('gambar')->nullable();
             $table->string('role')->default('karyawan');
             $table->boolean('is_active')->default(1);
