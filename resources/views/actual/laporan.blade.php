@@ -75,7 +75,7 @@
             <form method="GET" action="{{ route('laporan') }}">
                 <div class="row g-3 align-items-end">
                     <div class="col-md-3">
-                        <label class="form-label">Karyawan</label>
+                        <label class="form-label">Karyawan:</label>
                         <select name="user_id" class="form-control">
                             <option value="">Pilih Karyawan</option>
                             @foreach ($users as $user)
@@ -84,7 +84,7 @@
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Bulan</label>
+                        <label class="form-label">Bulan:</label>
                         <select name="month" class="form-control">
                             <option value="">Pilih Bulan</option>
                             @foreach ($months as $month)
@@ -95,7 +95,7 @@
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Tahun</label>
+                        <label class="form-label">Tahun:</label>
                         <select name="year" class="form-control">
                             <option value="">Pilih Tahun</option>
                             @foreach ($years as $year)

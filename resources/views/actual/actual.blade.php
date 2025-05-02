@@ -102,7 +102,7 @@
                                     <option value="{{ $y }}" {{ request('tahun') == $y ? 'selected' : '' }}>{{ $y }}</option>
                                         @endfor
                                 </select>
-    </div>
+                            </div>
 
     <div class="col-md-4 d-flex align-items-end">
         <button type="submit" class="btn btn-modern w-100">
