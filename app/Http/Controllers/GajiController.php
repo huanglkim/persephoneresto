@@ -46,38 +46,33 @@ class GajiController extends Controller
         }
 
         // Calculate total_gaji
-        $totalGaji = $jabatan->gaji_pokok + $jabatan->tunjangan_jabatan - ($absensi ? $absensi->potongan_gaji_pokok : 0);
+        $potonganGaji = $absensi ? $absensi->potongan_gaji_pokok : 0;
+        $totalGaji = $jabatan->gaji_pokok + $jabatan->tunjangan_jabatan - $potonganGaji;
 
-        // Check if we're updating an existing entry
         try {
-            // Check if the request contains an ID, meaning we want to update the data
             if ($request->has('id') && $request->id) {
                 // Update existing data
                 $gaji = Gaji::findOrFail($request->id);
                 $gaji->update($request->only(['karyawan_id', 'absensi_id', 'jabatan_id', 'keterangan']));
-                $gaji->total_gaji = $totalGaji; // Update total_gaji
-                $gaji->save(); // Save the changes
+                $gaji->total_gaji = $totalGaji;
+                $gaji->save();
                 $message = 'Data berhasil diperbarui!';
-                $updatedGaji = $gaji;
             } else {
                 // Store new data
                 $gaji = new Gaji($request->only(['karyawan_id', 'absensi_id', 'jabatan_id', 'keterangan']));
-                $gaji->total_gaji = $totalGaji; // Set total_gaji
-                $gaji->save(); // Save the new entry
+                $gaji->total_gaji = $totalGaji;
+                $gaji->save();
                 $message = 'Data berhasil disimpan!';
-                $newGaji = $gaji;
             }
 
             if ($request->ajax()) {
                 return response()->json([
                     'success' => true,
                     'message' => $message,
-                    'updatedGaji' => isset($updatedGaji) ? $updatedGaji : null,
-                    'newGaji' => isset($newGaji) ? $newGaji : null,
+                    'gaji' => $gaji, // Mengembalikan satu variabel gaji
                 ]);
             }
 
-            // Redirect with success message
             return redirect()->route('gaji')->with('success', $message);
         } catch (\Exception $e) {
             Log::error('Error saat menyimpan gaji: ' . $e->getMessage());
@@ -87,52 +82,47 @@ class GajiController extends Controller
 
     public function edit($id)
     {
-        // Ambil data absensi berdasarkan ID
-        $gaji = Gaji::find($id);
-        if (!$gaji) {
-            return redirect()->route('gaji')->with('error', 'Data tidak ditemukan.');
-        }
-
-        // Kirim data gaji ke view modal dalam format JSON
+        $gaji = Gaji::findOrFail($id); // Menggunakan findOrFail
         return response()->json($gaji);
     }
 
     public function update(Request $request, $id)
-{
-    // Validation
-    $request->validate([
-        'karyawan_id' => 'required|integer',
-        'absensi_id' => 'nullable|integer',
-        'jabatan_id' => 'required|integer',
-    ]);
-
-    // Get Jabatan and Absensi
-    $jabatan = Jabatan::findOrFail($request->jabatan_id);
-    $absensi = null;
-    if ($request->absensi_id) {
-        $absensi = Absensi::find($request->absensi_id);
-    }
-
-    // Calculate total_gaji
-    $totalGaji = $jabatan->gaji_pokok + $jabatan->tunjangan_jabatan - ($absensi ? $absensi->potongan_gaji_pokok : 0);
-
-    $gaji = Gaji::findOrFail($id); // Find the model instance to update
-    $gaji->update($request->only(['karyawan_id', 'absensi_id', 'jabatan_id', 'keterangan']));
-    $gaji->total_gaji = $totalGaji;
-    $gaji->save();
-
-    $message = 'Data berhasil diperbarui!';
-
-    if ($request->ajax()) {
-        return response()->json([
-            'success' => true,
-            'message' => $message,
-            'updatedGaji' => $gaji,
+    {
+        // Validation
+        $request->validate([
+            'karyawan_id' => 'required|integer',
+            'absensi_id' => 'nullable|integer',
+            'jabatan_id' => 'required|integer',
         ]);
-    }
 
-    return redirect()->route('gaji')->with('success', $message);
-}
+        // Get Jabatan and Absensi
+        $jabatan = Jabatan::findOrFail($request->jabatan_id);
+        $absensi = null;
+        if ($request->absensi_id) {
+            $absensi = Absensi::find($request->absensi_id);
+        }
+
+        // Calculate total_gaji
+        $potonganGaji = $absensi ? $absensi->potongan_gaji_pokok : 0;
+        $totalGaji = $jabatan->gaji_pokok + $jabatan->tunjangan_jabatan - $potonganGaji;
+
+        $gaji = Gaji::findOrFail($id);
+        $gaji->update($request->only(['karyawan_id', 'absensi_id', 'jabatan_id', 'keterangan']));
+        $gaji->total_gaji = $totalGaji;
+        $gaji->save();
+
+        $message = 'Data berhasil diperbarui!';
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+                'gaji' => $gaji,
+            ]);
+        }
+
+        return redirect()->route('gaji')->with('success', $message);
+    }
 
 
     // Delete the specified gaji
@@ -158,7 +148,7 @@ class GajiController extends Controller
     }
     public function print(Request $request, $id)
     {
-        $gaji = Gaji::with(['karyawan', 'absensi', 'jabatan'])->find($id);
+        $gaji = Gaji::with(['karyawan', 'absensi', 'jabatan'])->findOrFail($id); // Gunakan findOrFail untuk memastikan data ada
         return view('karyawan.invoice', compact('gaji'));
     }
 }

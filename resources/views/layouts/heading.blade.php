@@ -5,6 +5,6 @@
     <div class="details" style="flex: 1; text-align: center;">
         <h2 style="margin: 0; font-size: 20px; font-weight: bold;">Persephone Resto</h2>
         <p style="margin: 2px 0; font-size: 13px;"><strong>Alamat:</strong> Ds. Pulo, Kec. Jombang, Kab. Jombang</p>
-        <p style="margin: 2px 0; font-size: 13px;"><strong>Nomor Whatsapp:</strong> 0856-0806-2230</p>
+        <p style="margin: 2px 0; font-size: 13px;"><strong>Nomor Whatsapp:</strong> 0856-0806-2232</p>
     </div>
 </div>

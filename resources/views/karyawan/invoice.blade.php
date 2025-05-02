@@ -85,36 +85,53 @@
     <div class="invoice">
 
         @include('layouts.heading')
-
-        <div style="margin-top: 12px;">
+        <div style="text-align: center;">
             <strong style="font-size: 14px;">Slip Gaji Karyawan</strong><br>
-            <span style="font-size: 12px;">Tanggal: {{ \Carbon\Carbon::parse($gaji->tanggal)->format('d M Y') }}</span>
         </div>
-
+        
+        <div style="display: flex; justify-content: space-between; margin-top: 12px;">
+            <div style="text-align: left;">
+                <span style="font-size: 12px;">Tanggal Masuk: {{ ($gaji->karyawan->tanggal_masuk ?? null) ? \Carbon\Carbon::parse($gaji->karyawan->tanggal_masuk)->format('d M Y') : '-' }}</span><br>
+                <span style="font-size: 12px;">Tanggal Penggajian: {{ \Carbon\Carbon::parse($gaji->tanggal ?? now())->format('d M Y') }}</span><br>
+                <span style="font-size: 12px;">Jumlah Hari Kerja: {{ $gaji->absensi->jumlah_hari_kerja ?? '-' }}</span>
+            </div>
+            <div style="text-align: right;">
+                <span style="font-size: 12px;">Nama Karyawan: {{ ($gaji->karyawan->nama_karyawan ?? '-') }}</span><br>
+                <span style="font-size: 12px;">Divisi: {{ $gaji->karyawan->divisi->nama ?? '-' }}</span><br>
+                <span style="font-size: 12px;">Jabatan: {{ $gaji->jabatan->nama_jabatan ?? '-' }}</span>
+            </div>
+        </div>
+        <hr>
         <div class="info-section">
-            <p><span class="label">Nama</span> {{ $gaji->karyawan->nama_karyawan }}</p>
-            <p><span class="label">Jabatan</span> {{ $gaji->jabatan->nama_jabatan }}</p>
-            <p><span class="label">Jumlah Hari Kerja</span> {{ $gaji->absensi->jumlah_hari_kerja }}</p>
-            <p><span class="label">Jumlah Hari Sakit</span> {{ $gaji->absensi->jumlah_hari_sakit }}</p>
-            <p><span class="label">Jumlah Hari Izin</span> {{ $gaji->absensi->jumlah_hari_izin }}</p>
-            <p><span class="label">Jumlah Hari Alfa</span> {{ $gaji->absensi->jumlah_hari_alfa }}</p>
-            <p><span class="label">Jumlah Hari Cuti</span> {{ $gaji->absensi->jumlah_hari_cuti }}</p>
-            <p><span class="label">Gaji Pokok</span> Rp. {{ number_format($gaji->jabatan->gaji_pokok, 0, ',', '.') }}
+            <p><span class="label">Gaji Pokok</span> Rp. {{ number_format($gaji->jabatan->gaji_pokok ?? 0, 0, ',', '.') }}
             </p>
             <p><span class="label">Tunjangan Jabatan</span> Rp.
-                {{ number_format($gaji->jabatan->tunjangan_jabatan, 0, ',', '.') }}</p>
+                {{ number_format($gaji->jabatan->tunjangan_jabatan ?? 0, 0, ',', '.') }}</p>
             <p><span class="label">Potongan Gaji</span> Rp.
-                {{ number_format($gaji->absensi->potongan_gaji_pokok, 0, ',', '.') }}</p>
-            <p><span class="label">Tanggal</span> {{ \Carbon\Carbon::parse($gaji->tanggal)->format('d M Y') }}</p>
-            <p><span class="label">Keterangan</span> {{ $gaji->keterangan }}</p>
+                {{ number_format($gaji->absensi->potongan_gaji_pokok ?? 0, 0, ',', '.') }}</p>
+            <p><span class="label">Keterangan</span> {{ $gaji->keterangan ?? '-' }}</p>
 
             <hr style="margin: 20px 0; border: 1px solid #ccc;">
 
             <p style="font-weight: bold;">
-                <span class="label">Total Gaji</span> Rp. {{ number_format($gaji->total_gaji, 0, ',', '.') }}
+                <span class="label">Total Gaji</span> Rp. {{ number_format($gaji->total_gaji ?? 0, 0, ',', '.') }}
             </p>
         </div>
+        
+        <div style="margin-top: 30px; display: flex; justify-content: space-between;">
+            <div style="text-align: center;">
+                <span style="font-weight: bold;">Owner</span><br><br><br><br>
+                <span>Ale Huang</span><br>
+                <div style="width: 150px; border-bottom: 1px solid #000; margin-top: 5px; margin-left: auto; margin-right: auto;"></div>
+            </div>
+            <div style="text-align: center;">
+                <span style="font-weight: bold;">Karyawan</span><br><br><br><br>
+                <span>{{ $gaji->karyawan->nama_karyawan ?? '-' }}</span><br>
+                <div style="width: 150px; border-bottom: 1px solid #000; margin-top: 5px; margin-left: auto; margin-right: auto;"></div>
+            </div>
+        </div>
     </div>
+
 
     <script>
         window.print();
