@@ -49,14 +49,14 @@
     </style>
 @endsection
 @section('content')
-<div class="container">
-    <h3 class="fw-bold mb-4">Laporan Produk Paling Diminati</h3>
-
-    {{-- Filter --}}
-    <div class="card card-custom mb-4">
+<div class="container py-4">
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Laporan Produk Paling Diminati</h3>
+        </div>
         <div class="card-body">
             <form method="GET" class="row g-3 mb-4">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="bulan" class="form-label">Bulan:</label>
                     <select name="bulan" id="bulan" class="form-select">
                         @foreach (range(1, 12) as $b)
@@ -66,7 +66,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="tahun" class="form-label">Tahun:</label>
                     <select name="tahun" id="tahun" class="form-select">
                         @foreach ($tahunList as $t)
@@ -74,7 +74,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-3 d-flex align-items-end">
+                <div class="col-md-4 d-flex align-items-end">
                     <button type="submit" class="btn btn-modern w-100">
                         <i class="fas fa-filter me-1"></i> Filter
                     </button>
@@ -114,5 +114,5 @@
             @endif
         </div>
     </div>
-    </div>
+</div>
 @endsection

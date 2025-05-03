@@ -5,13 +5,16 @@
 @section('css')
     <style>
         #filterForm .form-group input {
-            width: 100%; /* Membuat input mengisi lebar container */
-            max-width: 450px; /* Memberikan batas lebar maksimum */
+            width: 100%;
+            /* Membuat input mengisi lebar container */
+            max-width: 450px;
+            /* Memberikan batas lebar maksimum */
         }
 
         /* Menata form agar elemen-elemennya lebih terstruktur */
         #filterForm .row.g-3 {
-            margin-bottom: 1rem; /* Memberikan sedikit ruang di bawah baris input */
+            margin-bottom: 1rem;
+            /* Memberikan sedikit ruang di bawah baris input */
         }
 
         /* Membuat tombol filter mengisi lebar kolomnya */
@@ -20,12 +23,14 @@
         }
 
         #filterForm .form-control {
-            max-width: 100%; /* Pastikan input responsif penuh */
+            max-width: 100%;
+            /* Pastikan input responsif penuh */
         }
 
         @media (min-width: 768px) {
             #filterForm .form-control {
-                max-width: 100%; /* Biarkan Bootstrap atur dengan grid */
+                max-width: 100%;
+                /* Biarkan Bootstrap atur dengan grid */
             }
         }
     </style>
@@ -55,16 +60,14 @@
                             </button>
                         </div>
                     </div>
-                </form>                
+                </form>
             </div>
         </div>
         <div class="card mb-4">
             <div class="card-header">
                 <h5 class="mb-0">Grafik Pendapatan per Bulan</h5>
             </div>
-            <div class="card-body">
-                <canvas id="pendapatan" width="400" height="200"></canvas>
-            </div>
+            <canvas id="pendapatan" width="400" height="200"></canvas>
         </div>
     </div>
 @endsection
@@ -132,7 +135,13 @@
                                         beginAtZero: true,
                                         ticks: {
                                             callback: function(value, index, values) {
-                                                return value.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                                                return value.toLocaleString(
+                                                'id-ID', {
+                                                    style: 'currency',
+                                                    currency: 'IDR',
+                                                    minimumFractionDigits: 0,
+                                                    maximumFractionDigits: 0
+                                                });
                                             }
                                         }
                                     }
@@ -142,7 +151,12 @@
                                         anchor: 'end',
                                         align: 'top',
                                         formatter: function(value, context) {
-                                            return value.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                                            return value.toLocaleString('id-ID', {
+                                                style: 'currency',
+                                                currency: 'IDR',
+                                                minimumFractionDigits: 0,
+                                                maximumFractionDigits: 0
+                                            });
                                         },
                                         font: {
                                             weight: 'bold'
